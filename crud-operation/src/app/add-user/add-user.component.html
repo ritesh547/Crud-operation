@@ -1,0 +1,35 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+  <label for="name">First Name</label>
+  <input type="text" [ngClass]="{'is-invalid': submitted && f['name'].errors}" formControlName="name"
+    class="form-control" id="exampleInputName" placeholder="Enter Name">
+
+  <!-- Validation Error Messages -->
+  <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+    <div *ngIf="f['name'].errors['required']">Name is required</div>
+    <div *ngIf="f['name'].errors['pattern']">Name should be valid (only letters and spaces)</div>
+  </div>
+
+
+  <label for="city">City</label>
+  <input type="text" id="city" name="city" formControlName="city"
+    [ngClass]="{'is-invalid': submitted && f['city'].errors}" class="form-control">
+  <!-- Validation Error Message for City -->
+  <div *ngIf="submitted && f['city'].errors" class="invalid-feedback">
+    <div *ngIf="f['city'].errors['required']">City is required</div>
+  </div>
+
+  <!-- Age Input -->
+  <label for="age">Age</label>
+  <input type="text" id="age" name="age" formControlName="age" [ngClass]="{'is-invalid': submitted && f['age'].errors}"
+    class="form-control">
+  <!-- Validation Error Message for Age -->
+  <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+    <div *ngIf="f['age'].errors['required']">Age is required</div>
+    <div *ngIf="f['age'].errors['pattern']">Age should be a valid number</div>
+  </div>
+
+  <p>
+    <button type="submit"> {{ userId ? 'Update' : 'Add' }} User</button>
+  </p>
+
+</form>
